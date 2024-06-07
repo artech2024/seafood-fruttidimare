@@ -1,0 +1,23 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+	font-size: 25px;
+	text-align: left;
+	padding: 20px;
+	justify-content: space-between;
+    background-color:#345e7d ;
+	color: white;
+}
+Button {
+	background-color:#345e7d ;
+	color: white;
+}
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: white;
+    color: #345e7d;
+	font-size: 15px;
+}

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Order</title>
+    <link rel="stylesheet" href="Orderstyle.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Place Your Order</h1>
+        <form id="orderForm" action="order-confirmation.html" method="get">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <fieldset>
+                <legend>Select Products:</legend>
+                <div class="product">
+                    <label for="Coustillant platter">
+                        <input type="checkbox" id="product1" name="products" value="Product 1" data-price="250">
+                        Coustillant platter (Rs 250)
+                    </label>
+                    <label for="quantity1">Quantity:</label>
+                    <input type="number" id="quantity1" name="quantity1" min="1" max="10" value="0" disabled>
+                </div>
+                <div class="product">
+                    <label for="Family combo">
+                        <input type="checkbox" id="product2" name="products" value="Product 2" data-price="850">
+                        Family Combo (Rs 850)
+                    </label>
+                    <label for="quantity2">Quantity:</label>
+                    <input type="number" id="quantity2" name="quantity2" min="1" max="10" value="0" disabled>
+                </div>
+                <div class="product">
+                    <label for="Seafood parella">
+                        <input type="checkbox" id="product3" name="products" value="Product 3" data-price="350">
+                        Seafood parella (Rs350)
+                    </label>
+                    <label for="quantity3">Quantity:</label>
+                    <input type="number" id="quantity3" name="quantity3" min="1" max="10" value="0" disabled>
+                </div>
+				<div class="product">
+                    <label for="Pana Pesa">
+                        <input type="checkbox" id="product3" name="products" value="Product 4" data-price="350">
+                        Pana pesa (Rs 850)
+                    </label>
+                    <label for="quantity3">Quantity:</label>
+                    <input type="number" id="quantity3" name="quantity3" min="1" max="10" value="0" disabled>
+                </div>
+				<div class="product">
+                    <label for="Crispy Fried prawn">
+                        <input type="checkbox" id="product3" name="products" value="Product 4" data-price="450">
+                        Crispy Fried Prawn (Rs 450)
+                    </label>
+                    <label for="quantity3">Quantity:</label>
+                    <input type="number" id="quantity3" name="quantity3" min="1" max="10" value="0" disabled>
+                </div>
+				<div class="product">
+                    <label for="Fried shrimp">
+                        <input type="checkbox" id="product3" name="products" value="Product 4" data-price="250">
+                        Fried shrimp (Rs 250")
+                    </label>
+                    <label for="quantity3">Quantity:</label>
+                    <input type="number" id="quantity3" name="quantity3" min="1" max="10" value="0" disabled>
+                </div>
+				<div class="product">
+                    <label for="Large family combo">
+                        <input type="checkbox" id="product3" name="products" value="Product 4" data-price="950">
+                        Large Family Combo (Rs 950)
+                    </label>
+                    <label for="quantity3">Quantity:</label>
+                    <input type="number" id="quantity3" name="quantity3" min="1" max="10" value="0" disabled>
+                </div>
+				<div class="product">
+                    <label for="Musels platter">
+                        <input type="checkbox" id="product3" name="products" value="Product 4" data-price="250">
+                        Musels Platter (Rs 250)
+                    </label>
+                    <label for="quantity3">Quantity:</label>
+                    <input type="number" id="quantity3" name="quantity3" min="1" max="10" value="0" disabled>
+                </div>
+				<div class="product">
+                    <label for="Peruvian-jalea">
+                        <input type="checkbox" id="product3" name="products" value="Product 4" data-price="350">
+                        Peruvian-jalea (Rs 350)
+                    </label>
+                    <label for="quantity3">Quantity:</label>
+                    <input type="number" id="quantity3" name="quantity3" min="1" max="10" value="0" disabled>
+                </div>
+				<div class="product">
+                    <label for="Seafood Pasta with Shrimp and Scallops">
+                        <input type="checkbox" id="product3" name="products" value="Product 4" data-price="350">
+                        Seafood Pasta with Shrimp and Scallops (Rs 350)
+                    </label>
+                    <label for="quantity3">Quantity:</label>
+                    <input type="number" id="quantity3" name="quantity3" min="1" max="10" value="0" disabled>
+                </div>
+				<div class="product">
+                    <label for="Seafood variety platter">
+                        <input type="checkbox" id="product3" name="products" value="Product 4" data-price="450">
+                        Seafood variety platter (Rs 450)
+                    </label>
+                    <label for="quantity3">Quantity:</label>
+                    <input type="number" id="quantity3" name="quantity3" min="1" max="10" value="0" disabled>
+                </div>
+				<div class="product">
+                    <label for="Seafood stew-6">
+                        <input type="checkbox" id="product3" name="products" value="Product 4" data-price="250">
+                        Seafood Stew-6 (Rs 250)
+                    </label>
+                    <label for="quantity3">Quantity:</label>
+                    <input type="number" id="quantity3" name="quantity3" min="1" max="10" value="0" disabled>
+                </div>
+            </fieldset>
+            
+            <button type="submit">Place Order</button>
+        </form>
+    </div>
+
+    <script>
+        // Enable quantity input only when the corresponding product is checked
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const quantityInput = document.getElementById(`quantity${this.id.replace('product', '')}`);
+                quantityInput.disabled = !this.checked;
+            });
+        });
+
+        // Calculate total price and pass it as a query parameter
+        document.getElementById('orderForm').addEventListener('submit', function(event) {
+            let totalPrice = 0;
+            document.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => {
+                const quantityInput = document.getElementById(`quantity${checkbox.id.replace('product', '')}`);
+                const price = parseFloat(checkbox.getAttribute('data-price'));
+                const quantity = parseInt(quantityInput.value);
+                totalPrice += price * quantity;
+            });
+            const totalPriceInput = document.createElement('input');
+            totalPriceInput.type = 'hidden';
+            totalPriceInput.name = 'totalPrice';
+            totalPriceInput.value = totalPrice.toFixed(2);
+            this.appendChild(totalPriceInput);
+        });
+    </script>
+</body>
+</html>
